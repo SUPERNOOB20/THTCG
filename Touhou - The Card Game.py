@@ -70,6 +70,16 @@ pill_with_highlight_surf.blit(pill_highlighter, (0, 0), special_flags=pygame.BLE
 clock = pygame.time.Clock()
 running = True
 
+
+
+
+
+
+
+
+
+
+
 title_screen_menu: int = 2
 
 class Pill(pygame.sprite.Sprite):
@@ -108,7 +118,7 @@ class Mouse(pygame.sprite.Sprite):
 
         self.image = dummy_surf
         self.rect = self.image.get_rect()
-        self.rect.center = pygame.mouse.get_pos()
+        self.rect.topleft = pygame.mouse.get_pos()
         """
         mouse_pos = pygame.mouse.get_pos()
         self.rect = (0, 0)     # initializes self.rect with a dummy value.
@@ -192,7 +202,7 @@ while(running):
     # screen.blit(pill_with_highlight_surf, (0, 300))
 
 
-    dummy_surf.center = pygame.mouse.get_pos()
+    dummy_surf.get_rect(center = pygame.mouse.get_pos())
 
     # flip() the display to refresh the screen
     pygame.display.flip()
