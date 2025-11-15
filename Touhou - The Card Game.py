@@ -70,28 +70,81 @@ pill_with_highlight_surf.blit(pill_highlighter, (0, 0), special_flags=pygame.BLE
 clock = pygame.time.Clock()
 running = True
 
+title_screen_menu: int = 2
+
+class Pill(pygame.sprite.Sprite):
+    def __init__(self, menu_ID, pill_ID, width, height):
+        super().__init__()
+
+        # self.animation_index = 0
+        self.image = pill_with_highlight_surf.copy()
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (width, height)
+
+
+pill_hitbox_1a = Pill(1, 1, (vw * 85), (vh * 70))
+pill_hitbox_1b = Pill(1, 2, (vw * 85), (vh * 85))
+pill_hitbox_2a = Pill(2, 3, (vw * 85), (vh * 40))
+pill_hitbox_2b = Pill(2, 4, (vw * 85), (vh * 52))
+pill_hitbox_2c = Pill(2, 5, (vw * 85), (vh * 64))
+pill_hitbox_2d = Pill(2, 6, (vw * 85), (vh * 76))
+pill_hitbox_2e = Pill(2, 7, (vw * 85), (vh * 88))
+
+pills_panel_1 = pygame.sprite.Group()
+pills_panel_2 = pygame.sprite.Group()
+
+pills_panel_1.add(pill_hitbox_1a)
+pills_panel_1.add(pill_hitbox_1b)
+pills_panel_2.add(pill_hitbox_2a)
+pills_panel_2.add(pill_hitbox_2b)
+pills_panel_2.add(pill_hitbox_2c)
+pills_panel_2.add(pill_hitbox_2d)
+pills_panel_2.add(pill_hitbox_2e)
+
 while(running):
     for event in pygame.event.get():
         if ((event.type == pygame.QUIT) or ((event.type == pygame.KEYDOWN) and (event.key == pygame.K_ESCAPE))):
             running = False
     
-        
+    
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
 
     # Game code goes here
 
+
     screen.blit(title_screen_surf, (0, 0))
-    screen.blit(pill_with_highlight_surf, (vw * 80, vh * 70))
-    screen.blit(pill_with_highlight_surf, (vw * 80, vh * 85))
+    
+    match title_screen_menu:
+        case 1:
+            pills_panel_1.draw(screen)
+            # screen.blit(pill_hitbox_1a, (vw * 80, vh * 70))
+            # screen.blit(pill_hitbox_1b, (vw * 80, vh * 85))
+
+        case 2:
+            pills_panel_2.draw(screen)
+            # screen.blit(pill_hitbox_2a, (vw * 80, vh * 50))
+            # screen.blit(pill_hitbox_2b, (vw * 80, vh * 60))
+            # screen.blit(pill_hitbox_2c, (vw * 80, vh * 70))
+            # screen.blit(pill_hitbox_2d, (vw * 80, vh * 80))
+            # screen.blit(pill_hitbox_2e, (vw * 80, vh * 90))
+
+        case _:
+            pass
+    
+
+
+
+    # screen.blit(pill_with_highlight_surf, (vw * 80, vh * 70))
+    # screen.blit(pill_with_highlight_surf, (vw * 80, vh * 85))
 
 
 
 
-    screen.blit(pill_highlighter, (0, 0))
-    screen.blit(pill_surf, (0, 150))
-    screen.blit(pill_with_highlight_surf, (0, 300))
+    # screen.blit(pill_highlighter, (0, 0))
+    # screen.blit(pill_surf, (0, 150))
+    # screen.blit(pill_with_highlight_surf, (0, 300))
 
 
 
