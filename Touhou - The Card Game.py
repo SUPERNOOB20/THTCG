@@ -44,6 +44,7 @@ dummy_surf                   = pygame.image.load('Graphics/dummy_test.png').conv
 title_screen_surf_raw        = pygame.image.load('Graphics/title_screen.png').convert()
 pill_with_highlight_surf_raw = pygame.image.load('Graphics/pill.png').convert_alpha()
 pill_highlight_raw           = pygame.image.load('Graphics/pill_highlight.png').convert_alpha()
+deck_surf                    = pygame.image.load('Graphics/face_down_deck.png').convert_alpha()
 # pill_highlight_raw = pygame.image.load('Graphics/pill_highlight_full_opacity.png').convert_alpha()
 
 title_screen_surf                = pygame.transform.scale(surface = title_screen_surf_raw,                size = (user_screen_width, user_screen_height))
@@ -80,7 +81,7 @@ running = True
 
 
 
-title_screen_menu: int = 2
+title_screen_menu: int = 1
 
 class Pill(pygame.sprite.Sprite):
     def __init__(self, menu_ID, pill_ID, width, height):
@@ -134,15 +135,14 @@ def collision_sprite(menu_ID):
     match menu_ID:
         case 1:
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_1, False)):
-                return False
+                return True
         
         case 2:
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_2, False)):
-                return False
+                return True
             
         case _:
-            pass
-    return True
+            return False
 
 
 
@@ -174,16 +174,16 @@ while(running):
     match title_screen_menu:
         case 1:
             pills_panel_1.draw(screen)
-            # screen.blit(pill_hitbox_1a, (vw * 80, vh * 70))
-            # screen.blit(pill_hitbox_1b, (vw * 80, vh * 85))
+        
 
         case 2:
             pills_panel_2.draw(screen)
-            # screen.blit(pill_hitbox_2a, (vw * 80, vh * 50))
-            # screen.blit(pill_hitbox_2b, (vw * 80, vh * 60))
-            # screen.blit(pill_hitbox_2c, (vw * 80, vh * 70))
-            # screen.blit(pill_hitbox_2d, (vw * 80, vh * 80))
-            # screen.blit(pill_hitbox_2e, (vw * 80, vh * 90))
+        
+
+        case 3:
+            # render text and pill box to choose deck here
+            deck_surf.get_rect(center = (vw * 50, vh * 50))
+            screen.blit(deck_surf)
 
         case _:
             pass
