@@ -40,7 +40,7 @@ if ((getattr(pygame, "IS_CE", False)) == 1):
 else:
     print("pygame-ce status: NOT CE")
 
-
+dummy_surf                   = pygame.image.load('Graphics/dummy_test.png').convert_alpha()
 title_screen_surf_raw        = pygame.image.load('Graphics/title_screen.png').convert()
 pill_with_highlight_surf_raw = pygame.image.load('Graphics/pill.png').convert_alpha()
 pill_highlight_raw           = pygame.image.load('Graphics/pill_highlight.png').convert_alpha()
@@ -101,11 +101,56 @@ pills_panel_2.add(pill_hitbox_2c)
 pills_panel_2.add(pill_hitbox_2d)
 pills_panel_2.add(pill_hitbox_2e)
 
+
+class Mouse(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.image = dummy_surf
+        self.rect = self.image.get_rect()
+        self.rect.center = pygame.mouse.get_pos()
+        """
+        mouse_pos = pygame.mouse.get_pos()
+        self.rect = (0, 0)     # initializes self.rect with a dummy value.
+        self.rect.center = mouse_pos
+        """
+
+
+mouse = pygame.sprite.GroupSingle()
+mouse.add(Mouse())
+
+
+def collision_sprite(menu_ID):
+    match menu_ID:
+        case 1:
+            if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_1, False)):
+                return False
+        
+        case 2:
+            if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_2, False)):
+                return False
+            
+        case _:
+            pass
+    return True
+
+
+
+
+
+
+
 while(running):
     for event in pygame.event.get():
         if ((event.type == pygame.QUIT) or ((event.type == pygame.KEYDOWN) and (event.key == pygame.K_ESCAPE))):
             running = False
-    
+        
+        if collision_sprite(title_screen_menu):
+
+            # trigger hover animation here.
+
+            if (event.type == pygame.MOUSEBUTTONDOWN) and (event.button == 1):  # if player is clicking.
+                title_screen_menu += 1
     
 
     # fill the screen with a color to wipe away anything from last frame
@@ -134,7 +179,7 @@ while(running):
             pass
     
 
-
+    # if mouse_pos_rect
 
     # screen.blit(pill_with_highlight_surf, (vw * 80, vh * 70))
     # screen.blit(pill_with_highlight_surf, (vw * 80, vh * 85))
@@ -147,7 +192,7 @@ while(running):
     # screen.blit(pill_with_highlight_surf, (0, 300))
 
 
-
+    dummy_surf.center = pygame.mouse.get_pos()
 
     # flip() the display to refresh the screen
     pygame.display.flip()
