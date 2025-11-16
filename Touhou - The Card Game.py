@@ -44,13 +44,17 @@ dummy_surf                   = pygame.image.load('Graphics/dummy_test.png').conv
 title_screen_surf_raw        = pygame.image.load('Graphics/title_screen.png').convert()
 pill_with_highlight_surf_raw = pygame.image.load('Graphics/pill.png').convert_alpha()
 pill_highlight_raw           = pygame.image.load('Graphics/pill_highlight.png').convert_alpha()
-deck_surf                    = pygame.image.load('Graphics/face_down_deck.png').convert_alpha()
+deck_surf_raw                = pygame.image.load('Graphics/face_down_deck.png').convert_alpha()
+black_pilled_surf_raw        = pygame.image.load('Graphics/black_pill.png').convert_alpha()
 # pill_highlight_raw = pygame.image.load('Graphics/pill_highlight_full_opacity.png').convert_alpha()
 
-title_screen_surf                = pygame.transform.scale(surface = title_screen_surf_raw,                size = (user_screen_width, user_screen_height))
-pill_surf                        = pygame.transform.scale(surface = pill_with_highlight_surf_raw,         size = (vw * 20, vh * 13))
-pill_with_highlight_surf         = pygame.transform.scale(surface = pill_with_highlight_surf_raw,         size = (vw * 20, vh * 13))
-pill_highlight                   = pygame.transform.scale(surface = pill_highlight_raw,                   size = (vw * 20, vh * 13))
+title_screen_surf            = pygame.transform.scale(surface = title_screen_surf_raw,                size = (user_screen_width, user_screen_height))
+pill_surf                    = pygame.transform.scale(surface = pill_with_highlight_surf_raw,         size = (vw * 20, vh * 13))
+pill_with_highlight_surf     = pygame.transform.scale(surface = pill_with_highlight_surf_raw,         size = (vw * 20, vh * 13))
+pill_highlight               = pygame.transform.scale(surface = pill_highlight_raw,                   size = (vw * 20, vh * 13))
+deck_surf                    = pygame.transform.scale(surface = deck_surf_raw,                        size = (floor(vh * 18.83333), vh * 30))
+black_pilled_surf            = pygame.transform.scale(surface = black_pilled_surf_raw,                size = (floor(user_screen_width / 2), floor(user_screen_height / 2)))
+
 
 
 
@@ -137,25 +141,16 @@ mouse.add(Mouse())
 
 def collision_sprite(menu_ID):
 
-    # print("mouse.sprite:", mouse.sprite)
-    # print("pills_panel_1:", pills_panel_1)
-    # print("pills_panel_2:", pills_panel_2)
-
     match menu_ID:
         case 1:
-            print("CASE 1")
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_1, False)):
-                print("CASE 1 IS TRUE")
                 return True
         
         case 2:
-            print("CASE 2")
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_2, False)):
-                print("CASE 2 IS TRUE")
                 return True
             
         case _:
-            print("ERROR")
             return False
 
 
@@ -196,8 +191,16 @@ while(running):
 
         case 3:
             # render text and pill box to choose deck here
-            deck_surf.get_rect(center = (vw * 50, vh * 50))
-            screen.blit(deck_surf)
+
+            black_pill_coords = black_pilled_surf.get_rect(center = (floor(user_screen_width / 2), floor((user_screen_height / 2) + vh * 10)))
+            deck_surf_coords = deck_surf.get_rect(center = (floor(user_screen_width / 2), floor((user_screen_height / 2) + vh * 10)))
+
+            black_pilled_surf.set_alpha(90)
+            screen.blit(black_pilled_surf, black_pill_coords)
+
+            screen.blit(deck_surf, deck_surf_coords)
+
+            
 
         case _:
             pass
