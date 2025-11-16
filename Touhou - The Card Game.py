@@ -29,6 +29,7 @@ default_deck = deck_loader.load_deck(f"{startup_directory}/Decks/included_ingame
 full_deck = deck_loader.load_deck(f"{startup_directory}/Decks/included_ingame/Full.csv")
 
 pygame.init()
+pygame.font.init()
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
 exit_game = False
@@ -138,6 +139,11 @@ mouse.add(Mouse())
 
 
 
+SegoeUII_12pt = pygame.font.Font(filename="Fonts/segoeuii.ttf", size=12)
+CCWildWordsI_36pt = pygame.font.Font(filename="Fonts/CC Wild Words Italic.ttf", size=36)
+
+
+
 
 def collision_sprite(menu_ID):
 
@@ -200,6 +206,11 @@ while(running):
 
             screen.blit(deck_surf, deck_surf_coords)
 
+            # choose_deck_prompt_surf = pygame.font.Font.render(self = CCWildWordsI_24pt, text = "Choose a deck to play with.", antialias = True, color = (0,0,0), bgcolor = None, wraplength = 0)
+            choose_deck_prompt_surf = pygame.font.Font.render(CCWildWordsI_36pt, "Choose a deck to play with.", True, (255,255,255), None, 0)
+
+            choose_deck_prompt_rect = choose_deck_prompt_surf.get_rect(center = (floor(user_screen_width / 2), floor((user_screen_height / 2) - vh * 11)))
+            screen.blit(choose_deck_prompt_surf, choose_deck_prompt_rect)
             
 
         case _:
