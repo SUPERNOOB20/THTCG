@@ -86,7 +86,7 @@ running = True
 
 
 
-title_screen_menu: int = 1
+
 
 class Pill(pygame.sprite.Sprite):
     def __init__(self, menu_ID, pill_ID, width, height):
@@ -162,8 +162,8 @@ def collision_sprite(menu_ID):
 
 
 
-
-
+title_screen_menu: int = 1
+deck_is_loaded: bool = False
 
 while(running):
     for event in pygame.event.get():
@@ -212,7 +212,34 @@ while(running):
             choose_deck_prompt_rect = choose_deck_prompt_surf.get_rect(center = (floor(user_screen_width / 2), floor((user_screen_height / 2) - vh * 11)))
             screen.blit(choose_deck_prompt_surf, choose_deck_prompt_rect)
             
+            # Source - https://stackoverflow.com/a
+            # Posted by tomvodi, modified by community. See post 'Timeline' for change history
+            # Retrieved 2025-11-16, License - CC BY-SA 4.0
 
+            import tkinter as tk
+            from tkinter import filedialog
+
+
+
+            choose_deck_prompt_surf = pygame.font.Font.render(CCWildWordsI_36pt, "Choose a deck to play with.", True, (255,255,255), None, 0)
+
+            choose_deck_prompt_rect = choose_deck_prompt_surf.get_rect(center = (floor(user_screen_width / 2), floor((user_screen_height / 2) - vh * 11)))
+            screen.blit(choose_deck_prompt_surf, choose_deck_prompt_rect)
+
+        case 4:
+            if (deck_is_loaded == False):
+            
+                root = tk.Tk()
+                root.withdraw()
+
+                file_path = filedialog.askopenfilename()
+
+                print(file_path)
+
+                # root.destroy()
+                root.quit()
+
+                deck_is_loaded = True
         case _:
             pass
     
