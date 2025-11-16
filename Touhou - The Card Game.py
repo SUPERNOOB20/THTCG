@@ -113,6 +113,8 @@ pills_panel_2.add(pill_hitbox_2d)
 pills_panel_2.add(pill_hitbox_2e)
 
 
+
+
 class Mouse(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -131,17 +133,29 @@ mouse = pygame.sprite.GroupSingle()
 mouse.add(Mouse())
 
 
+
+
 def collision_sprite(menu_ID):
+
+    # print("mouse.sprite:", mouse.sprite)
+    # print("pills_panel_1:", pills_panel_1)
+    # print("pills_panel_2:", pills_panel_2)
+
     match menu_ID:
         case 1:
+            print("CASE 1")
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_1, False)):
+                print("CASE 1 IS TRUE")
                 return True
         
         case 2:
+            print("CASE 2")
             if (pygame.sprite.spritecollide(mouse.sprite, pills_panel_2, False)):
+                print("CASE 2 IS TRUE")
                 return True
             
         case _:
+            print("ERROR")
             return False
 
 
@@ -202,7 +216,11 @@ while(running):
     # screen.blit(pill_with_highlight_surf, (0, 300))
 
 
-    dummy_surf.get_rect(center = pygame.mouse.get_pos())
+    # dummy_surf.get_rect(center = pygame.mouse.get_pos())
+
+    # mouse.update()
+    mouse = pygame.sprite.GroupSingle()
+    mouse.add(Mouse())
 
     # flip() the display to refresh the screen
     pygame.display.flip()
