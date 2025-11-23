@@ -2,3 +2,5 @@
 .debian_venv/
 windows_venv/
 __pycache__/
+OpenGL_wintest/w10_venv
+OpenGL_wintest/__pycache__/
