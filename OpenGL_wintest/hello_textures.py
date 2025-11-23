@@ -163,11 +163,11 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
 
     match color:
         case "red":
-            shader_colors = [[0.8, 0.0, 0.0], [0.7, 0.4, 0.4]]    # Colours for top-right and bottom left corners, respectively :3
+            shader_colors = [[0.8, 0.3, 0.3], [0.7, 0.4, 0.4]]    # Colours for bottom-right and top-left corners, respectively :3
         case "yellow":
-            shader_colors = [[0.8, 0.8, 0.0], [0.7, 0.7, 0.4]]
+            shader_colors = [[0.8, 0.8, 0.5], [0.7, 0.7, 0.4]]
         case "blue":
-            shader_colors = [[0.0, 0.0, 0.8], [0.4, 0.4, 0.7]]
+            shader_colors = [[0.45, 0.45, 0.8], [0.8, 0.8, 1]]
         case _:
             i = 0   # nop instruction
 
@@ -262,8 +262,8 @@ while(running):
     # flip() the display to refresh the screen
     pygame.display.flip()
 
-    # clock.tick(60)  # limits FPS to 60
-    clock.tick()  # unlimited FPS :O
+    clock.tick(60)  # limits FPS to 60
+    # clock.tick()  # unlimited FPS :O
 
     framerate = int(clock.get_fps())
     pygame.display.set_caption(f"FPS: {framerate}")
