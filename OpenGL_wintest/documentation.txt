@@ -1,8 +1,8 @@
-draw_card(ID, blue|red|yellow, x, y, width, height)
+draw_card(ID, blue|red|yellow, x, y, card_width, card_height)
 
 ID: int
 blue|red|yellow: str
 x:      floating point (in vw) (0.0 - 100.0)
 y:      floating point (in vh) (0.0 - 100.0)
-width:  floating point (in vw) (0.0 - 100.0)
-height: floating point (in vh) (0.0 - 100.0)
+card_width:  floating point (in vw) (0.0 - 100.0)
+card_height: floating point (in vh) (0.0 - 100.0)

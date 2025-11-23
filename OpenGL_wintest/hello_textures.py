@@ -60,22 +60,25 @@ glEnable(GL_BLEND)
 
 # WILL FIX LATER
 youmu_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Youmu.png").convert_alpha()
-width, height = youmu_card_raw.size        # width = img.size. And also, height = img.size
+youmu_width = youmu_card_raw.size
+youmu_height = youmu_card_raw.size        # width = img.size. And also, height = img.size
 youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture1 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 remi_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Remi.png").convert_alpha()
-width, height = youmu_card_raw.size        # width = img.size. And also, height = img.size
-youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
+remi_width = remi_card_raw.size
+remi_height = remi_card_raw.size        # width = img.size. And also, height = img.size
+remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture2 = glGenTextures(2)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Ascent.png").convert_alpha()
-width, height = youmu_card_raw.size        # width = img.size. And also, height = img.size
-ascent_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
+ascent_width = ascent_card_raw.size
+ascent_height = ascent_card_raw.size                # width = img.size. And also, height = img.size
+ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(3)      # texture: np.uint32(1)
 
 
@@ -115,7 +118,7 @@ glBlendFunc(GL_ONE, GL_CONSTANT_COLOR)
 
 
 
-def draw_card(ID: str, color: str, x: float, y: float, width: float, height: float):
+def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_height: float):
     
 
     # Texture binding.
@@ -123,10 +126,16 @@ def draw_card(ID: str, color: str, x: float, y: float, width: float, height: flo
     match ID:
         case 1:
             glBindTexture(GL_TEXTURE_2D, texture1)
+            width = youmu_width
+            height = youmu_height
         case 2:
             glBindTexture(GL_TEXTURE_2D, texture2)
+            width = remi_width
+            height = remi_height
         case 3:
             glBindTexture(GL_TEXTURE_2D, texture3)
+            width = ascent_width
+            height = ascent_height
 
 
 
@@ -159,10 +168,10 @@ def draw_card(ID: str, color: str, x: float, y: float, width: float, height: flo
     x_0 = (ceil(x/50)) - 1
     y_0 = (ceil(y/50)) - 1
 
-    x_1 = x_0 + (ceil(width/50)) - 1
-    y_1 = y_0 + (ceil(height/50)) - 1
+    x_1 = x_0 + (ceil(card_width/50)) - 1
+    y_1 = y_0 + (ceil(card_height/50)) - 1
 
-    glBegin(GL_POLYGON)
+    # glBegin(GL_POLYGON)
 
 
     # TOP-LEFT CORNER OF THE CARD
@@ -191,7 +200,7 @@ def draw_card(ID: str, color: str, x: float, y: float, width: float, height: flo
     glVertex2f(x_0, y_1)
     
 
-    glEnd()
+    # glEnd()
 
 
     return
@@ -215,12 +224,13 @@ while(running):
     glClear(GL_COLOR_BUFFER_BIT)
     glPointSize(32)
 
+    # glBegin(GL_POLYGON)
 
-    draw_card('youmu', "blue", 10, 10, 20, 80)
-    draw_card('remi', "red", 40, 40, 20, 80)
-    draw_card('ascent', "yellow", 70, 70, 20, 80)
+    draw_card('youmu', "blue", 10.0, 10.0, 20.0, 80.0)
+    draw_card('remi', "red", 40.0, 40.0, 20.0, 80.0)
+    draw_card('ascent', "yellow", 70.0, 70.0, 20.0, 80.0)
     
-
+    # glEnd()
 
     # Game code goes here
 
