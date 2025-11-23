@@ -120,6 +120,8 @@ glBlendFunc(GL_ONE, GL_CONSTANT_COLOR)
 
 def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_height: float):
     
+    width = 0
+    height = 0
 
     # Texture binding.
     # TODO: Improve this code x-x
