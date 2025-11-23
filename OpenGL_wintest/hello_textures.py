@@ -60,7 +60,7 @@ glEnable(GL_BLEND)
 
 # WILL FIX LATER
 youmu_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Youmu.png").convert_alpha()
-youmu_card_smol = pygame.transform.scale(surface = youmu_card_raw, size = (200, 400))
+youmu_card_smol = pygame.transform.scale(surface = youmu_card_raw, size = (250, 500))
 youmu_width, youmu_height = youmu_card_smol.size     # NO IDEA how this works.
 youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture1 = glGenTextures(1)      # texture: np.uint32(1)
@@ -68,7 +68,7 @@ texture1 = glGenTextures(1)      # texture: np.uint32(1)
 
 # WILL FIX LATER
 remi_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Remi.png").convert_alpha()
-remi_card_smol = pygame.transform.scale(surface = remi_card_raw, size = (200, 400))
+remi_card_smol = pygame.transform.scale(surface = remi_card_raw, size = (250, 500))
 remi_width, remi_height = remi_card_smol.size        # NO IDEA how this works.
 remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture2 = glGenTextures(1)      # texture: np.uint32(1)
@@ -76,7 +76,7 @@ texture2 = glGenTextures(1)      # texture: np.uint32(1)
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Ascent.png").convert_alpha()
-ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (200, 400))
+ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (250, 500))
 ascent_width, ascent_height = ascent_card_smol.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(1)      # texture: np.uint32(1)
@@ -115,7 +115,7 @@ glBlendFunc(GL_ONE, GL_CONSTANT_COLOR)
 
 
 
-
+frame_counter: int = 0
 
 
 def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_height: float):
@@ -163,11 +163,11 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
 
     match color:
         case "red":
-            shader_colors = [[0.3, 0.0, 0.0], [0.8, 0.0, 0.0]]    # Colours for bottom-left and top-right corners, respectively :3
+            shader_colors = [[0.8, 0.0, 0.0], [0.7, 0.4, 0.4]]    # Colours for top-right and bottom left corners, respectively :3
         case "yellow":
-            shader_colors = [[0.3, 0.3, 0.0], [0.8, 0.8, 0.0]]
+            shader_colors = [[0.8, 0.8, 0.0], [0.7, 0.7, 0.4]]
         case "blue":
-            shader_colors = [[0.0, 0.0, 0.3], [0.0, 0.0, 0.8]]
+            shader_colors = [[0.0, 0.0, 0.8], [0.4, 0.4, 0.7]]
         case _:
             i = 0   # nop instruction
 
@@ -176,14 +176,17 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     x_0 = (x/50) - 1
     y_0 = (y/50) - 1
 
-    x_1 = x_0 + (card_width/50) - 1
-    y_1 = y_0 + (card_height/50) - 1
+    x_1 = x_0 + (card_width/50)
+    y_1 = y_0 + (card_height/50)
+
+
+
 
     glBegin(GL_POLYGON)
 
 
     # TOP-LEFT CORNER OF THE CARD
-    glColor4f(1, 1, 1, 1.0)    
+    glColor4f(1.0, 1.0, 1.0, 1.0)    
     # glBlendColor(1.0, 0.0, 0.0, 0.1)    
     glTexCoord2fv((0, 0))
     glVertex2f(x_0, y_0)
@@ -195,7 +198,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     glVertex2f(x_1, y_0)
 
     # BOTTOM-RIGHT CORNER OF THE CARD
-    # glColor4f(0.1, 0.1, 1.0, 1.0)
+    glColor4f(1.0, 1.0, 1.0, 1.0)
     # glBlendColor(0.0, 0.0, 1.0, 0.1)
     glTexCoord2fv((1, 1))
     glVertex2f(x_1, y_1)
@@ -210,6 +213,12 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
 
     glEnd()
 
+    # glTranslatef(width, 0, 0)
+    # glScalef(-1,1,1)
+
+    # if (frame_counter % 2000 == 0):
+        # glTranslatef(width, 0, 0)
+        # glScalef(-1,1,1)
 
     return
 
@@ -246,7 +255,7 @@ while(running):
 
 
 
-
+    frame_counter += 1
 
 
 
@@ -254,7 +263,7 @@ while(running):
     pygame.display.flip()
 
     # clock.tick(60)  # limits FPS to 60
-    clock.tick()
+    clock.tick()  # unlimited FPS :O
 
     framerate = int(clock.get_fps())
     pygame.display.set_caption(f"FPS: {framerate}")
