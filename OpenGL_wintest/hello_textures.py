@@ -126,18 +126,20 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     # Texture binding.
     # TODO: Improve this code x-x
     match ID:
-        case 1:
+        case "youmu":
             glBindTexture(GL_TEXTURE_2D, texture1)
             width = youmu_width
             height = youmu_height
-        case 2:
+        case "remi":
             glBindTexture(GL_TEXTURE_2D, texture2)
             width = remi_width
             height = remi_height
-        case 3:
+        case "ascent":
             glBindTexture(GL_TEXTURE_2D, texture3)
             width = ascent_width
             height = ascent_height
+        case _:
+            j = 0 # nop instruction
 
 
 
@@ -229,8 +231,8 @@ while(running):
     # glBegin(GL_POLYGON)
 
     draw_card('youmu', "blue", 10.0, 10.0, 20.0, 80.0)
-    draw_card('remi', "red", 40.0, 40.0, 20.0, 80.0)
-    draw_card('ascent', "yellow", 70.0, 70.0, 20.0, 80.0)
+    draw_card('remi', "red", 40.0, 10.0, 20.0, 80.0)
+    draw_card('ascent', "yellow", 70.0, 10.0, 20.0, 80.0)
     
     # glEnd()
 
