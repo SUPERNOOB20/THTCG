@@ -13,7 +13,7 @@ from OpenGL.GL import *
 # from OpenGL.GLU import *
 
 
-from math import floor, ceil
+from math import floor
 
 from screeninfo import get_monitors
 user_screen_width = get_monitors()[0].width
@@ -69,14 +69,14 @@ texture1 = glGenTextures(1)      # texture: np.uint32(1)
 remi_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Remi.png").convert_alpha()
 remi_width, remi_height = remi_card_raw.size        # NO IDEA how this works.
 remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
-texture2 = glGenTextures(2)      # texture: np.uint32(1)
+texture2 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Ascent.png").convert_alpha()
 ascent_width, ascent_height = ascent_card_raw.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
-texture3 = glGenTextures(3)      # texture: np.uint32(1)
+texture3 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 
@@ -119,6 +119,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     
     width = 0
     height = 0
+    card_data = 0
 
     # Texture binding.
     # TODO: Improve this code x-x
@@ -127,14 +128,17 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
             glBindTexture(GL_TEXTURE_2D, texture1)
             width = youmu_width
             height = youmu_height
+            card_data = youmu_card_data
         case "remi":
             glBindTexture(GL_TEXTURE_2D, texture2)
             width = remi_width
             height = remi_height
+            card_data = remi_card_data
         case "ascent":
             glBindTexture(GL_TEXTURE_2D, texture3)
             width = ascent_width
             height = ascent_height
+            card_data = ascent_card_data
         case _:
             j = 0 # nop instruction
 
@@ -146,7 +150,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER)
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0 , GL_RGBA, GL_UNSIGNED_BYTE, youmu_card_data)
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0 , GL_RGBA, GL_UNSIGNED_BYTE, card_data)
 
     # glEnable(GL_BLEND)
 
@@ -166,11 +170,11 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
 
 
 
-    x_0 = (ceil(x/50)) - 1
-    y_0 = (ceil(y/50)) - 1
+    x_0 = (x/50) - 1
+    y_0 = (y/50) - 1
 
-    x_1 = x_0 + (ceil(card_width/50)) - 1
-    y_1 = y_0 + (ceil(card_height/50)) - 1
+    x_1 = x_0 + (card_width/50) - 1
+    y_1 = y_0 + (card_height/50) - 1
 
     # glBegin(GL_POLYGON)
 
