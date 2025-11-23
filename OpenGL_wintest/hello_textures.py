@@ -60,24 +60,21 @@ glEnable(GL_BLEND)
 
 # WILL FIX LATER
 youmu_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Youmu.png").convert_alpha()
-youmu_width = youmu_card_raw.size
-youmu_height = youmu_card_raw.size        # width = img.size. And also, height = img.size
+youmu_width, youmu_height = youmu_card_raw.size     # NO IDEA how this works.
 youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture1 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 remi_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Remi.png").convert_alpha()
-remi_width = remi_card_raw.size
-remi_height = remi_card_raw.size        # width = img.size. And also, height = img.size
+remi_width, remi_height = remi_card_raw.size        # NO IDEA how this works.
 remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture2 = glGenTextures(2)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Ascent.png").convert_alpha()
-ascent_width = ascent_card_raw.size
-ascent_height = ascent_card_raw.size                # width = img.size. And also, height = img.size
+ascent_width, ascent_height = ascent_card_raw.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(3)      # texture: np.uint32(1)
 
