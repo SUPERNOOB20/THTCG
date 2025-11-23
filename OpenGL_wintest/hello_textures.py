@@ -60,21 +60,24 @@ glEnable(GL_BLEND)
 
 # WILL FIX LATER
 youmu_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Youmu.png").convert_alpha()
-youmu_width, youmu_height = youmu_card_raw.size     # NO IDEA how this works.
+youmu_card_smol = pygame.transform.scale(surface = youmu_card_raw, size = (200, 400))
+youmu_width, youmu_height = youmu_card_smol.size     # NO IDEA how this works.
 youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture1 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 remi_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Remi.png").convert_alpha()
-remi_width, remi_height = remi_card_raw.size        # NO IDEA how this works.
+remi_card_smol = pygame.transform.scale(surface = remi_card_raw, size = (200, 400))
+remi_width, remi_height = remi_card_smol.size        # NO IDEA how this works.
 remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture2 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(r"D:\SUPERNOOB_Studios\Indie_Development\Games\Python\THTCG\OpenGL_wintest\Ascent.png").convert_alpha()
-ascent_width, ascent_height = ascent_card_raw.size      # NO IDEA how this works.
+ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (200, 400))
+ascent_width, ascent_height = ascent_card_smol.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(1)      # texture: np.uint32(1)
 
@@ -176,7 +179,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     x_1 = x_0 + (card_width/50) - 1
     y_1 = y_0 + (card_height/50) - 1
 
-    # glBegin(GL_POLYGON)
+    glBegin(GL_POLYGON)
 
 
     # TOP-LEFT CORNER OF THE CARD
@@ -205,7 +208,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
     glVertex2f(x_0, y_1)
     
 
-    # glEnd()
+    glEnd()
 
 
     return
