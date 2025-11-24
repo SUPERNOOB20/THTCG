@@ -61,7 +61,7 @@ glEnable(GL_BLEND)
 
 # WILL FIX LATER
 youmu_card_raw = pygame.image.load(f"{startup_directory}/Youmu.png").convert_alpha()
-youmu_card_smol = pygame.transform.scale(surface = youmu_card_raw, size = (250, 500))
+youmu_card_smol = pygame.transform.scale(surface = youmu_card_raw, size = (15*vw, 30*vh))
 youmu_width, youmu_height = youmu_card_smol.size     # NO IDEA how this works.
 youmu_card_data = pygame.image.tobytes(youmu_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture1 = glGenTextures(1)      # texture: np.uint32(1)
@@ -81,6 +81,14 @@ ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (250
 ascent_width, ascent_height = ascent_card_smol.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(1)      # texture: np.uint32(1)
+
+
+yorihime_card_raw = pygame.image.load(f"{startup_directory}/Yorihime.png").convert_alpha()
+yorihime_card_smol = pygame.transform.scale(surface = yorihime_card_raw, size = (15*vw, 30*vh))
+yorihime_width, yorihime_height = yorihime_card_smol.size     # NO IDEA how this works.
+yorihime_card_data = pygame.image.tobytes(yorihime_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
+texture1 = glGenTextures(1)      # texture: np.uint32(1)
+
 
 
 

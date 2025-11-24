@@ -7,7 +7,7 @@
 # import tkinter as tk    <--- NO
 import pygame     # Imports pygame-ce
 import copy
-import deck_loader
+from Code import deck_loader
 
 from math import floor
 
@@ -30,7 +30,8 @@ full_deck = deck_loader.load_deck(f"{startup_directory}/Decks/included_ingame/Fu
 
 pygame.init()
 pygame.font.init()
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+# screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((1280, 720))
 
 exit_game = False
 is_on_fullscreen = True
@@ -240,6 +241,7 @@ while(running):
                 root.quit()
 
                 deck_is_loaded = True
+                
         case _:
             pass
     
@@ -266,7 +268,11 @@ while(running):
     # flip() the display to refresh the screen
     pygame.display.flip()
 
-    clock.tick(60)  # limits FPS to 60
+    # clock.tick(60)      # limits FPS to 60
+    clock.tick()          # unlimited FPS :0
+
+    framerate = int(clock.get_fps())
+    pygame.display.set_caption(f"FPS: {framerate}")
 
 pygame.quit()
 import sys
