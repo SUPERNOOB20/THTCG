@@ -1,0 +1,15 @@
+FONTS
+
+Character's name (in the cards): Bell MT - 22pt
+
+Card type (youkai/human/special): Sans - Italic - 9pt
+
+Card description: Segoe Print - Italic - 14pt
+
+
+Title screen's title: Bradley Hand ITC - Bold, Italic - 72pt
+Title screen's pills: Segoe UI - Italic - 14pt
+
+
+MAKAI and MOON field colour: #ff00ff
+EARTH field colour:

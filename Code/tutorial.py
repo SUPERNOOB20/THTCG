@@ -69,7 +69,7 @@ texture1 = glGenTextures(1)      # texture: np.uint32(1)
 
 # WILL FIX LATER
 remi_card_raw = pygame.image.load(f"{startup_directory}/Remi.png").convert_alpha()
-remi_card_smol = pygame.transform.scale(surface = remi_card_raw, size = (250, 500))
+remi_card_smol = pygame.transform.scale(surface = remi_card_raw, size = (15*vw, 30*vh))
 remi_width, remi_height = remi_card_smol.size        # NO IDEA how this works.
 remi_card_data = pygame.image.tobytes(remi_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture2 = glGenTextures(1)      # texture: np.uint32(1)
@@ -77,7 +77,7 @@ texture2 = glGenTextures(1)      # texture: np.uint32(1)
 
 # WILL FIX LATER
 ascent_card_raw = pygame.image.load(f"{startup_directory}/Ascent.png").convert_alpha()
-ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (250, 500))
+ascent_card_smol = pygame.transform.scale(surface = ascent_card_raw, size = (15*vw, 30*vh))
 ascent_width, ascent_height = ascent_card_smol.size      # NO IDEA how this works.
 ascent_card_data = pygame.image.tobytes(ascent_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
 texture3 = glGenTextures(1)      # texture: np.uint32(1)
@@ -87,7 +87,7 @@ yorihime_card_raw = pygame.image.load(f"{startup_directory}/Yorihime.png").conve
 yorihime_card_smol = pygame.transform.scale(surface = yorihime_card_raw, size = (15*vw, 30*vh))
 yorihime_width, yorihime_height = yorihime_card_smol.size     # NO IDEA how this works.
 yorihime_card_data = pygame.image.tobytes(yorihime_card_raw, "RGBA")      # image.tobytes() allows OpenGL to "understand" this data (to load the image).
-texture1 = glGenTextures(1)      # texture: np.uint32(1)
+texture4 = glGenTextures(1)      # texture: np.uint32(1)
 
 
 
@@ -127,32 +127,194 @@ glBlendFunc(GL_ONE, GL_CONSTANT_COLOR)
 frame_counter: int = 0
 
 
-def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_height: float):
+def draw_card(ID: str, x: float, y: float, card_width: float, card_height: float):
     
     width = 0
     height = 0
     card_data = 0
 
+    color = ""
+
     # Texture binding.
     # TODO: Improve this code x-x
     match ID:
-        case "youmu":
-            glBindTexture(GL_TEXTURE_2D, texture1)
-            width = youmu_width
-            height = youmu_height
-            card_data = youmu_card_data
-        case "remi":
-            glBindTexture(GL_TEXTURE_2D, texture2)
-            width = remi_width
-            height = remi_height
-            card_data = remi_card_data
         case "ascent":
-            glBindTexture(GL_TEXTURE_2D, texture3)
+            glBindTexture(GL_TEXTURE_2D, texture1)
             width = ascent_width
             height = ascent_height
             card_data = ascent_card_data
+            color = "yellow"
+        case "descent":
+            glBindTexture(GL_TEXTURE_2D, texture2)
+            width = descent_width
+            height = descent_height
+            card_data = descent_card_data
+            color = "yellow"
+        case "seija":
+            glBindTexture(GL_TEXTURE_2D, texture3)
+            width = seija_width
+            height = seija_height
+            card_data = seija_card_data
+            color = "yellow"
+        case "chimata":
+            glBindTexture(GL_TEXTURE_2D, texture4)
+            width = chimata_width
+            height = chimata_height
+            card_data = chimata_card_data
+            color = "yellow"
+        case "kosuzu":
+            glBindTexture(GL_TEXTURE_2D, texture5)
+            width = kosuzu_width
+            height = kosuzu_height
+            card_data = kosuzu_card_data
+            color = "yellow"
+        case "nazrin":
+            glBindTexture(GL_TEXTURE_2D, texture6)
+            width = nazrin_width
+            height = nazrin_height
+            card_data = nazrin_card_data
+            color = "yellow"
+        case "reimu":
+            glBindTexture(GL_TEXTURE_2D, texture7)
+            width = reimu_width
+            height = reimu_height
+            card_data = reimu_card_data
+            color = "blue"
+        case "okuu":
+            glBindTexture(GL_TEXTURE_2D, texture8)
+            width = okuu_width
+            height = okuu_height
+            card_data = okuu_card_data
+            color = "red"
+        case "kyouko":
+            glBindTexture(GL_TEXTURE_2D, texture9)
+            width = kyouko_width
+            height = kyouko_height
+            card_data = kyouko_card_data
+            color = "blue"
+        case "tenshi":
+            glBindTexture(GL_TEXTURE_2D, texture10)
+            width = tenshi_width
+            height = tenshi_height
+            card_data = tenshi_card_data
+            color = "red"
+        case "cirno":
+            glBindTexture(GL_TEXTURE_2D, texture11)
+            width = tenshi_width
+            height = tenshi_height
+            card_data = tenshi_card_data
+            color = "blue"
+        case "aya":
+            glBindTexture(GL_TEXTURE_2D, texture12)
+            width = tenshi_width
+            height = tenshi_height
+            card_data = tenshi_card_data
+            color = "blue"
+        case "keine":
+            glBindTexture(GL_TEXTURE_2D, texture13)
+            width = keine_width
+            height = keine_height
+            card_data = keine_card_data
+            color = "blue"
+        case "mystia":
+            glBindTexture(GL_TEXTURE_2D, texture14)
+            width = mystia_width
+            height = mystia_height
+            card_data = mystia_card_data
+            color = "red"
+        case "remilia":
+            glBindTexture(GL_TEXTURE_2D, texture15)
+            width = remilia_width
+            height = remilia_height
+            card_data = remilia_card_data
+            color = "red"
+        case "flandre":
+            glBindTexture(GL_TEXTURE_2D, texture16)
+            width = flandre_width
+            height = flandre_height
+            card_data = flandre_card_data
+            color = "red"
+        case "sakuya":
+            glBindTexture(GL_TEXTURE_2D, texture17)
+            width = sakuya_width
+            height = sakuya_height
+            card_data = sakuya_card_data
+            color = "blue"
+        case "wriggle":
+            glBindTexture(GL_TEXTURE_2D, texture18)
+            width = wriggle_width
+            height = wriggle_height
+            card_data = wriggle_card_data
+            color = "red"
+        case "youmu":
+            glBindTexture(GL_TEXTURE_2D, texture19)
+            width = youmu_width
+            height = youmu_height
+            card_data = youmu_card_data
+            color = "blue"
+        case "yuyuko":
+            glBindTexture(GL_TEXTURE_2D, texture20)
+            width = yuyuko_width
+            height = yuyuko_height
+            card_data = yuyuko_card_data
+            color = "blue"
+        case "seiga":
+            glBindTexture(GL_TEXTURE_2D, texture21)
+            width = seiga_width
+            height = seiga_height
+            card_data = seiga_card_data
+            color = "red"
+        case "yoshika":
+            glBindTexture(GL_TEXTURE_2D, texture22)
+            width = yoshika_width
+            height = yoshika_height
+            card_data = yoshika_card_data
+            color = "red"
+        case "momoyo":
+            glBindTexture(GL_TEXTURE_2D, texture23)
+            width = momoyo_width
+            height = momoyo_height
+            card_data = momoyo_card_data
+            color = "red"
+        case "meiling":
+            glBindTexture(GL_TEXTURE_2D, texture24)
+            width = meiling_width
+            height = meiling_height
+            card_data = meiling_card_data
+            color = "blue"
+        case "sanae":
+            glBindTexture(GL_TEXTURE_2D, texture25)
+            width = sanae_width
+            height = sanae_height
+            card_data = sanae_card_data
+            color = "blue"
+        case "patchouli":
+            glBindTexture(GL_TEXTURE_2D, texture26)
+            width = patchouli_width
+            height = patchouli_height
+            card_data = patchouli_card_data
+            color = "red"
+        case "yorihime":
+            glBindTexture(GL_TEXTURE_2D, texture27)
+            width = yorihime_width
+            height = yorihime_height
+            card_data = yorihime_card_data
+            color = "blue"
+        case "hijiri":
+            glBindTexture(GL_TEXTURE_2D, texture28)
+            width = hijiri_width
+            height = hijiri_height
+            card_data = hijiri_card_data
+            color = "blue"
+
+        case "yorihime":
+            glBindTexture(GL_TEXTURE_2D, texture27)
+            width = yorihime_width
+            height = yorihime_height
+            card_data = yorihime_card_data
+
         case _:
-            j = 0 # nop instruction
+            print("ERROR: Invalid card ID [errorcode 1]")
 
 
 
@@ -178,7 +340,7 @@ def draw_card(ID: str, color: str, x: float, y: float, card_width: float, card_h
         case "blue":
             shader_colors = [[0.45, 0.45, 0.8], [0.8, 0.8, 1]]
         case _:
-            i = 0   # nop instruction
+            print("ERROR: Invalid colour [errorcode 2].")  # nop instruction
 
 
 

@@ -1,0 +1,24 @@
+*** errorcode 0: Invalid deck. ***
+
+Invalid deck format.
+Please refer to the decks that come with the game for examples of valid decks!
+
+
+
+
+
+*** errorcode 1: Invalid card ID. ***
+
+Please pick a valid card ID according to the ruleset you're playing with!
+Each ID is a different card (for example, in ruleset v0.0.0.3: Ascent is ID 1, Descent is ID 2, Seija is ID 3, etc.)
+
+
+
+
+
+*** errorcode 2: Invalid card colour. ***
+
+List of valid card colours:
+- Red
+- Blue
+- Yellow
