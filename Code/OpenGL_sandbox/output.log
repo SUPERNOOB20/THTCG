@@ -1,0 +1,56 @@
+[ 25%] Building CXX object CMakeFiles/Tutorial_01.dir/src/rendering_test.cpp.o
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp: In function ‘void renderAllCards()’:
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:35:9: error: ‘glGenTextures’ was not declared in this scope
+   35 |         glGenTextures(1, &texture);
+      |         ^~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:36:23: error: ‘GL_TEXTURE_2D’ was not declared in this scope
+   36 |         glBindTexture(GL_TEXTURE_2D, texture);
+      |                       ^~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:36:9: error: ‘glBindTexture’ was not declared in this scope
+   36 |         glBindTexture(GL_TEXTURE_2D, texture);
+      |         ^~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:38:40: error: ‘GL_TEXTURE_WRAP_S’ was not declared in this scope
+   38 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      |                                        ^~~~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:38:59: error: ‘GL_REPEAT’ was not declared in this scope
+   38 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      |                                                           ^~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:38:9: error: ‘glTexParameteri’ was not declared in this scope
+   38 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      |         ^~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:39:40: error: ‘GL_TEXTURE_WRAP_T’ was not declared in this scope
+   39 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+      |                                        ^~~~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:40:40: error: ‘GL_TEXTURE_MIN_FILTER’ was not declared in this scope
+   40 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      |                                        ^~~~~~~~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:40:63: error: ‘GL_LINEAR’ was not declared in this scope
+   40 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      |                                                               ^~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:41:40: error: ‘GL_TEXTURE_MAG_FILTER’ was not declared in this scope
+   41 |         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      |                                        ^~~~~~~~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:43:62: error: cannot convert ‘std::string’ {aka ‘std::__cxx11::basic_string<char>’} to ‘const char*’
+   43 |         unsigned char *data = stbi_load(list_of_directories[i], &width, &height, &nrChannels, 0);
+      |                                         ~~~~~~~~~~~~~~~~~~~~~^
+      |                                                              |
+      |                                                              std::string {aka std::__cxx11::basic_string<char>}
+In file included from /media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:5:
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/image_loader/stb_image.h:1366:40: note:   initializing argument 1 of ‘stbi_uc* stbi_load(const char*, int*, int*, int*, int)’
+ 1366 | STBIDEF stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                            ~~~~~~~~~~~~^~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:47:44: error: ‘GL_RGB’ was not declared in this scope
+   47 |             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+      |                                            ^~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:47:78: error: ‘GL_UNSIGNED_BYTE’ was not declared in this scope
+   47 |             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+      |                                                                              ^~~~~~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:47:13: error: ‘glTexImage2D’ was not declared in this scope
+   47 |             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+      |             ^~~~~~~~~~~~
+/media/supernoob20/Windows_Partition3/SUPERNOOB_Studios/Indie_Development/Games/Python/THTCG/Code/OpenGL_sandbox/src/rendering_test.cpp:48:13: error: ‘glGenerateMipmap’ was not declared in this scope
+   48 |             glGenerateMipmap(GL_TEXTURE_2D);
+      |             ^~~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/Tutorial_01.dir/build.make:104: CMakeFiles/Tutorial_01.dir/src/rendering_test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/Tutorial_01.dir/all] Error 2
+gmake: *** [Makefile:91: all] Error 2
